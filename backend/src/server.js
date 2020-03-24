@@ -2,8 +2,8 @@ const express = require('express');
 
 const app = express();
 
-app.get('', (request, response) => {
-  return response.send('Hello World!');
+app.get('', (req, res) => {
+  return res.send('Hello World!');
 });
 
 app.listen(3333);
