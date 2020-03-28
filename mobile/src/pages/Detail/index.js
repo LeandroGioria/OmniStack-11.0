@@ -2,7 +2,7 @@ import React from 'react';
 import { Linking } from 'react-native';
 
 import { Feather } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import * as MailComposer from 'expo-mail-composer';
 
 import logoImg from '../../assets/logo.png';
@@ -23,9 +23,17 @@ import {
 } from './styles';
 
 export default function Detail() {
+  const route = useRoute();
   const navigation = useNavigation();
-  const message =
-    'Olá APAD, estou entrando em contato pois gostaria de ajudar no caso "Cadelinha atropelada" com o valor de R$120,00';
+  const { incident } = route.params;
+  const message = `Olá ${
+    incident.name
+  }, estou entrando em contato pois gostaria de ajudar no caso "${
+    incident.title
+  }" com o valor de ${Intl.NumberFormat('pt-BR', {
+    style: 'currency',
+    currency: 'BRL',
+  }).format(incident.value)}`;
 
   function navigateBack() {
     navigation.goBack();
@@ -33,8 +41,8 @@ export default function Detail() {
 
   function sendMail() {
     MailComposer.composeAsync({
-      subject: 'Héroi do caso: Cadelinha atropelada',
-      recipients: ['legioria@hotmail.com'],
+      subject: `Héroi do caso: ${incident.title}`,
+      recipients: [incident.email],
       body: message,
     });
   }
@@ -54,13 +62,20 @@ export default function Detail() {
 
       <Incident>
         <IncidentProperty style={{ marginTop: 0 }}>ONG:</IncidentProperty>
-        <IncidentValue>APAD</IncidentValue>
+        <IncidentValue>
+          {incident.name} de {incident.city}/{incident.uf}
+        </IncidentValue>
 
         <IncidentProperty>CASO:</IncidentProperty>
-        <IncidentValue>Cadelinha atropelada</IncidentValue>
+        <IncidentValue>{incident.title}</IncidentValue>
 
         <IncidentProperty>VALOR:</IncidentProperty>
-        <IncidentValue>R$ 120,00</IncidentValue>
+        <IncidentValue>
+          {Intl.NumberFormat('pt-BR', {
+            style: 'currency',
+            currency: 'BRL',
+          }).format(incident.value)}
+        </IncidentValue>
       </Incident>
 
       <ContactBox>
