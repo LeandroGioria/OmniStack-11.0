@@ -5,8 +5,8 @@ module.exports = {
   extends: [
     'plugin:react/recommended',
     'airbnb',
-    'airbnb-base',
-   		 	'prettier',
+    'prettier',
+		'prettier/react',
   ],
   globals: {
     Atomics: 'readonly',
@@ -25,41 +25,36 @@ module.exports = {
     'prettier',
     'react-hooks',
     'import',
-    'jsx-a11y'
+    'jsx-a11y',
+    'eslint-plugin-import-helpers'
   ],
   rules: {
     "prettier/prettier": "error",
-    "react/jsx-filename-extension": ['error', { extensions: ['.jsx', '.js'] }],
-    "import/prefer-default-export": 'off',
-    "no-unused-vars": ["error", { argsIgnorePattern: "^_" }],
-    "react/jsx-one-expression-per-line": "off",
-    "global-require": "off",
-    "react-native/no-raw-text": "off",
-    "no-param-reassign": "off",
-    "no-underscore-dangle": "off",
-    camelcase: "off",
-    "no-console": ["error", { allow: ["tron"] }],
-    "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn",
-    'import-helpers/order-imports': [
-      'warn',
-      {
-          newlinesBetween: 'always', // new line between groups
-          groups: [
-              '/^react/',
-              'module',
-              '/^@shared/',
-              ['parent', 'sibling', 'index'],
-          ],
-          alphabetize: { order: 'asc', ignoreCase: true },
-      },
-    ],
-  },
-  settings: {
-    "import/resolver": {
-      "babel-plugin-root-import":{
-        rootPathSuffix: "src"
-      }
-    }
+				"import/prefer-default-export": 'off',
+				"react/jsx-filename-extension": ['warn', { extensions: ['.jsx', '.js'] }],
+				camelcase: "off",
+				"react/jsx-one-expression-per-line": "off",
+				"no-param-reassign": "off",
+				"no-unused-vars":["error", { argsIgnorePattern:"^_" }],
+				"react-hooks/rules-of-hooks": "error",
+				"react-hooks/exhaustive-deps": "warn",
+				"global-require": "off",
+				"react-native/no-raw-text": "off",
+				"no-underscore-dangle": "off",
+				"no-console": ["error", { allow: ["tron"] }],
+        "class-methods-use-this": "off",
+        'import-helpers/order-imports': [
+          'warn',
+          {
+              newlinesBetween: 'always', // new line between groups
+              groups: [
+                  '/^react/',
+                  'module',
+                  '/^@shared/',
+                  ['parent', 'sibling', 'index'],
+              ],
+              alphabetize: { order: 'asc', ignoreCase: true },
+          },
+      ],
   },
 };
