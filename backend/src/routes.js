@@ -1,10 +1,10 @@
-const express = require('express');
+import express from 'express';
 
-const OngController = require('./controllers/OngController');
-const IncidentController = require('./controllers/IncidentController');
-const ProfileController = require('./controllers/ProfileController');
-const SessionController = require('./controllers/SessionController');
-const { celebrate, Joi, Segments } = require('celebrate');
+import OngController from './controllers/OngController';
+import IncidentController from './controllers/IncidentController';
+import ProfileController from './controllers/ProfileController';
+import SessionController from './controllers/SessionController';
+import { celebrate, Joi, Segments } from 'celebrate';
 
 const routes = express.Router();
 

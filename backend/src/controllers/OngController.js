@@ -1,7 +1,7 @@
-const connection = require('../database/connection');
-const generateUniqueId = require('../utils/generateUniqueId');
+import connection from '../database/connection';
+import generateUniqueId from '../utils/generateUniqueId';
 
-module.exports = {
+export default {
     async store(req, res) {
         const { name, email, whatsapp, city, uf } = req.body;
         const id = generateUniqueId();
